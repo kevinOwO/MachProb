@@ -1,0 +1,127 @@
+#include <iostream>
+#include <iomanip>
+#include <conio.h>
+#include <string>
+
+using namespace std;
+
+int main(){
+	// Constant integer for input size
+	const int CharLimit = 15;
+	const int ExamsCap = 2;
+	const int QuizCap = 2;
+	const int ReportCap = 5;
+	const int StdCap = 50;
+	
+	// Variable for student name
+	char StdName[StdCap][CharLimit];
+	
+	float IR[StdCap][ReportCap];
+	float GR[StdCap][ReportCap];
+	float Q[StdCap][QuizCap];
+	float ME[StdCap][ExamsCap];
+	
+	float GradeIR[StdCap];
+	float GradeGR[StdCap];
+	float GradeQ[StdCap][QuizCap];
+	float GradeQFinal[StdCap];
+	float GradeME[StdCap][ExamsCap];
+	float GradeMEFinal[StdCap];
+	
+	float FinalGrade [StdCap];
+	float transmute [StdCap];
+	
+	int i, j;
+	
+	for(i = 0; i < StdCap; i++){
+		cout << endl << "Student no. "<< i+1 <<") Name: ";
+		cin >> StdName[i];
+		
+		cout << "\n==========GRADE  COMPONENT (INPUT)==========";
+
+		//INDIVIDUAL REPORT
+		cout << "\nIndividual Reports: \n";
+		for(j = 0; j < ReportCap; j++){
+			cout << "Report #" << j+1 << ": ";
+			cin >> IR[i][j];
+			GradeIR[i] = GradeIR[i] + IR[i][j];
+		}
+		GradeIR[i] = (GradeIR[i] / ReportCap) * 0.15;
+
+		//GROUP REPORT
+		cout << "\nGroup Reports: \n";
+		for(j = 0; j < ReportCap; j++){
+			cout << "Report #" << j+1 << ": ";
+			cin >> GR[i][j];
+			GradeGR[i] = GradeGR[i] + GR[i][j];
+		}
+		GradeGR[i] = (GradeGR[i] / ReportCap) * 0.25;
+		
+		//QUIZZES
+		cout << "\nQuizzes: \n";
+		for(j = 0; j < QuizCap; j++){
+			cout << "Quiz #" << j+1 << ": ";
+			cin >> Q[i][j];
+			GradeQ[i][j] = Q[i][j] * 0.10;
+			GradeQFinal[i] = GradeQFinal[i] + GradeQ[i][j]; 
+		}
+		
+		//MAJOR EXAMINATIONS
+		cout << "\nMajor Examintaions: \n";
+		for(j = 0; j < ExamsCap; j++){
+			cout << "Exam " << j+1 << ": ";
+			cin >> ME[i][j];
+			GradeME[i][j] = ME[i][j] * 0.20;
+			GradeMEFinal[i] = GradeMEFinal[i] + GradeME[i][j]; 
+		}
+		
+		cout << endl << "Individual Report:  " << GradeIR[i];
+		cout << endl << "Group Report:       " << GradeGR[i];
+		cout << endl << "Quizzes:            " << GradeQFinal[i];
+		cout << endl << "Major Examinations: " << GradeMEFinal[i];
+				
+		FinalGrade[i] = GradeIR[i] + GradeGR[i] + GradeQFinal[i] + GradeMEFinal[i];
+		
+		// Transmuting Raw Grade
+		if(FinalGrade[i] > 95.57 && FinalGrade[i] < 100){
+			transmute[i] = 1;
+		}
+		if(FinalGrade[i] > 91.12 && FinalGrade[i] < 95.56){
+			transmute[i] = 1.25;
+		}
+		if(FinalGrade[i] > 86.68 && FinalGrade[i] < 91.11){
+			transmute[i] = 1.50;
+		}
+		if(FinalGrade[i] > 82.23 && FinalGrade[i] < 86.67){
+			transmute[i] = 1.75;
+		}
+		if(FinalGrade[i] > 77.79 && FinalGrade[i] < 82.22){
+			transmute[i] = 2.00;
+		}
+		if(FinalGrade[i] > 73.34 && FinalGrade[i] < 77.78){
+			transmute[i] = 2.25;
+		}
+		if(FinalGrade[i] > 68.90 && FinalGrade[i] < 73.33){
+			transmute[i] = 2.50;
+		}
+		if(FinalGrade[i] > 64.45 && FinalGrade[i] < 68.89){
+			transmute[i] = 2.75;
+		}
+		if(FinalGrade[i] > 60 && FinalGrade[i] < 64.44){
+			transmute[i] = 3.00;
+		}if(FinalGrade[i] < 59.99){
+			transmute[i] = 5.00;
+		}
+		
+		// Printing Final Grade
+		cout << endl << "FINAL GRADE: "<< transmute[i] << " = " << FinalGrade[i] << endl;
+		if(FinalGrade[i] > 60 ){
+			cout << "PASSED" << endl << endl;
+		}else{
+			cout << "FAILED" << endl << endl;
+		}
+	}
+	
+	_getch();
+	return 0;
+}
