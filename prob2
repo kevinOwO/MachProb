@@ -1,0 +1,269 @@
+#include <iostream>
+#include <conio.h>
+#include <cmath>
+#include <iomanip>
+#include <stdio.h>
+
+using namespace std;
+
+int main()
+{
+	// Variables for triangle sides
+	double a, b, c;
+
+	// Variables for angles: A, B and C
+	double aA, aB, aC;
+	double aA2, aB2, aC2;
+
+	// Variables for perimeter, area, and circumcenter
+	double per, area, circum;
+
+	// Input sides of a tringle 
+	cout << "---Enter Triangle's Three Sides---" << endl;
+	cout << "\nSide a: "; cin >> a;
+	cout << "Side b: "; cin >> b;
+	cout << "Side c: "; cin >> c;
+	cout << endl;
+
+	// Angles for Isosceles Triangle
+	if (a == b && a != c || b == c && b != a || c == a && b != a)
+	{
+		double h; // height
+		double base;
+
+		if (a == b)
+		{
+			// Additional variables for finding angles
+			base = c / 2;
+			h = sqrt(pow(a, 2) - pow(base, 2));
+			aB = ((pow(base, 2) + pow(a, 2)) - pow(h, 2)) / (2 * a * base);
+			aB2 = acos(aB) * (180 / 3.14159);
+			aC = acos(((pow(a, 2) + pow(h, 2)) - pow(base, 2)) / (2 * a * h));
+			aC2 = 2 * (aC * (180 / 3.14159));
+
+			// Interior Angles for Isocsceles Triangle
+			cout << "---Interior Angles of the Triangle---" << endl;
+			cout << "\nAngle A: " << setprecision(4) << showpoint
+				<< aB2 << "\370" << endl;
+			cout << "Angle B: " << setprecision(4) << showpoint
+				<< aB2 << "\370" << endl;
+			cout << "Angle C: " << setprecision(4) << showpoint
+				<< aC2 << "\370" << endl;
+
+			// Print classification based on sides
+			cout << "\n---Classification of Triangle---" << endl;
+			cout << "\nBased on Sides: Isosceles Triangle";
+
+			// Print classification based on angles
+			cout << "\nBased on Angles: ";
+			if (round(aB2) == 90 || round(aC2) == 90)
+			{
+				cout << "Right-angled Triangle" << endl;
+			}
+			else if (aB2 > 91 || aC2 > 91)
+			{
+				cout << "Obtuse-angled Triangle" << endl;
+			}
+			else if (aB2 < 90 || aC2 < 90)
+			{
+				cout << "Acute-angled Triangle" << endl;
+			}
+
+			// Additional variables for finding perimeter, area, apothem and circumcenter
+			per = a + b + c;
+			area = 0.5 * h * c;
+			int n = (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c);
+			circum = (a*b*c) / (sqrt(n));
+
+			// Perimeter and Area
+			cout << "\n---Perimeter and Area of Triangle---" << endl;
+			cout << "\nPerimeter: " << per << " units" << endl;
+			cout << "Area: " << area << " square units" << endl;
+
+			// Apothem and Circumcenter
+			cout << "\n---Apothem and Circumcenter of Triangle---" << endl;
+			cout << "\nApothem: " << (2 * area) / per << " units" << endl;
+			cout << "Circumceter: " << circum << " units" << endl;
+
+		}
+		else if (b == c)
+		{
+			// Additional variables for finding angles
+			base = a / 2;
+			h = sqrt(abs(pow(b, 2) - pow(base, 2)));
+			aA = acos(((pow(b, 2) + pow(h, 2)) - pow(base, 2)) / (2 * b * h));
+			aA2 = 2 * (aA * (180 / 3.14159));
+			aC = ((pow(b, 2) + pow(base, 2)) - pow(h, 2)) / (2 * b * base);
+			aC2 = acos(aC) * (180 / 3.14159);
+
+			// Interior Angles for Isocsceles Triangle
+			cout << "---Interior Angles of the Triangle---" << endl;
+			cout << "\nAngle A: " << setprecision(4) << showpoint
+				<< aA2 << "\370" << endl;
+			cout << "Angle B: " << setprecision(4) << showpoint
+				<< aC2 << "\370" << endl;
+			cout << "Angle C: " << setprecision(4) << showpoint
+				<< aC2 << "\370" << endl;
+
+			// Print classification based on sides
+			cout << "\n---Classification of Triangle---" << endl;
+			cout << "\nBased on Sides: Isosceles Triangle";
+
+			// Print classification based on angles
+			cout << "\nBased on Angles: ";
+			if (round(aA2) == 90 || round(aC2) == 90)
+			{
+				cout << "Right-angled Triangle" << endl;
+			}
+			else if (aA2 > 91 || aC2 > 91)
+			{
+				cout << "Obtuse-angled Triangle" << endl;
+			}
+			else if (aA2 < 90 || aC2 < 90)
+			{
+				cout << "Acute-angled Triangle" << endl;
+			}
+
+			// Additional variables for finding perimeter, area, apothem and circumcenter
+			per = a + b + c;
+			area = 0.5 * h * a;
+			int n = (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c);
+			circum = (a*b*c) / (sqrt(n));
+
+			// Perimeter and Area
+			cout << "\n---Perimeter and Area of Triangle---" << endl;
+			cout << "\nPerimeter: " << per << " units" << endl;
+			cout << "Area: " << area << " square units" << endl;
+
+			// Apothem and Circumcenter
+			cout << "\n---Apothem and Circumcenter of Triangle---" << endl;
+			cout << "\nApothem: " << (2 * area) / per << " units" << endl;
+			cout << "Circumceter: " << circum << " units" << endl;
+		}
+		else if (c == a)
+		{
+			// Additional variables for finding angles
+			base = b / 2;
+			h = sqrt(abs(pow(c, 2) - pow(base, 2)));
+			aA = acos(((pow(c, 2) + pow(base, 2)) - pow(h, 2)) / (2 * c * base));
+			aA2 = aA * (180 / 3.14159);
+			aB = ((pow(h, 2) + pow(c, 2)) - pow(base, 2)) / (2 * h * c);
+			aB2 = 2 * (aB * (180 / 3.14159));
+
+			// Interior Angles for Isocsceles Triangle
+			cout << "---Interior Angles of the Triangle---" << endl;
+			cout << "\nAngle A: " << setprecision(4) << showpoint
+				<< aA2 << "\370" << endl;
+			cout << "Angle B: " << setprecision(4) << showpoint
+				<< aB2 << "\370" << endl;
+			cout << "Angle C: " << setprecision(4) << showpoint
+				<< aA2 << "\370" << endl;
+
+			// Print classification based on sides
+			cout << "\n---Classification of Triangle---" << endl;
+			cout << "\nBased on Sides: Isosceles Triangle";
+
+			// Print classification based on angles
+			cout << "\nBased on Angles: ";
+			if (round(aA2) == 90 || round(aB2) == 90)
+			{
+				cout << "Right-angled Triangle" << endl;
+			}
+			else if (aA2 > 91 || aB2 > 91)
+			{
+				cout << "Obtuse-angled Triangle" << endl;
+			}
+			else if (aA2 < 90 || aB2 < 90)
+			{
+				cout << "Acute-angled Triangle" << endl;
+			}
+
+			// Additional variables for finding perimeter, area, apothem and circumcenter
+			per = a + b + c;
+			area = 0.5 * h * b;
+			int n = (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c);
+			circum = (a*b*c) / (sqrt(n));
+
+			// Perimeter and Area
+			cout << "\n---Perimeter and Area of Triangle---" << endl;
+			cout << "\nPerimeter: " << per << " units" << endl;
+			cout << "Area: " << area << " square units" << endl;
+
+			// Apothem and Circumcenter
+			cout << "\n---Apothem and Circumcenter of Triangle---" << endl;
+			cout << "\nApothem: " << (2 * area) / per << " units" << endl;
+			cout << "Circumceter: " << circum << " units" << endl;
+		}
+	}
+	else // If the triangle doesn't have exactly two equal sides
+	{
+		// Program to compute for all interior angles
+		cout << "---Interior Angles of the Triangle---" << endl;
+
+		// Computing for Angles A, B and C
+		aA = ((pow(b, 2) + pow(c, 2)) - pow(a, 2)) / (2 * b * c);
+		aA2 = acos(aA) * (180 / 3.14159);
+		aB = ((pow(c, 2) + pow(a, 2)) - pow(b, 2)) / (2 * a * c);
+		aB2 = acos(aB) * (180 / 3.14159);
+		aC = ((pow(a, 2) + pow(b, 2)) - pow(c, 2)) / (2 * a * b);
+		aC2 = acos(aC) * (180 / 3.14159);
+
+		// Printing Angle Values
+		cout << "\nAngle A: " << setprecision(4) << showpoint
+			<< aA2 << "\370" << endl;
+		cout << "Angle B: " << setprecision(4) << showpoint
+			<< aB2 << "\370" << endl;
+		cout << "Angle C: " << setprecision(4) << showpoint
+			<< aC2 << "\370" << endl;
+		cout << endl;
+
+		// Classification based on sides
+		cout << "---Classification of Triangle---" << endl;
+		cout << "\nBased on Sides: ";
+
+		if (a == b && b == c && c == a)
+		{
+			cout << "Equilateral Triangle" << endl;
+		}
+		else 
+		{
+			cout << "Scalene Triangle" << endl;
+		}
+
+		// Print classification based on angles
+		cout << "Based on Angles: ";
+		if (round(aA2) == 90 || round(aB2) == 90 || round(aC2) == 90)
+		{
+			cout << "Right-angled Triangle" << endl;
+		}
+		else if (aA2 > 91 || aB2 > 91 || aC2 > 91)
+		{
+			cout << "Obtuse-angled Triangle" << endl;
+		}
+		else if (aA2 < 90 || aB2 < 90 || aC2 < 90)
+		{
+			cout << "Acute-angled Triangle" << endl;
+		}
+
+		// Additional variables for finding perimeter, area, apothem and circumcenter
+		int s = (a + b + c) / 2;
+		per = a + b + c;
+		area = sqrt(s * (s - a) * (s - b) * (s - c));
+		int n = (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c);
+		circum = (a*b*c) / (sqrt(n));
+
+		// Perimeter and Area
+		cout << "\n---Perimeter and Area of Triangle---" << endl;
+		cout << "\nPerimeter: " << per << " units" << endl;
+		cout << "Area: " << area << " square units" << endl;
+
+		// Apothem and Circumcenter
+		cout << "\n---Apothem and Circumcenter of Triangle---" << endl;
+		cout << "\nApothem: " << (2 * area) / per << " units" << endl;
+		cout << "Circumceter: " << circum << " units" << endl;
+	}
+
+
+	_getch();
+	return 0;
+}
